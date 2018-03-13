@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Professor Sudoeste on 08/03/2018.
  */
 
-public class InfoAlunoDB  extends SQLiteOpenHelper{
+public abstract class InfoAlunoDB  extends SQLiteOpenHelper{
 
     private static  final int DATABASE_VERSION = 1;
 
@@ -20,11 +20,22 @@ public class InfoAlunoDB  extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sqlTabelaUsuario = "CREATE TABLE" + UsuarioContract.UsuarioEntry.TABLE_NAME +" (" +
+        String sqlTabelaUser = "CREATE TABLE" + UsuarioContract.UsuarioEntry.TABLE_NAME +" (" +
                 UsuarioContract.UsuarioEntry._IDUSER + " INTEGERS PRIMARY KEY, " +
                 UsuarioContract.UsuarioEntry.COLUMN_NAME + "TEXT NOT NULL, " +
                 UsuarioContract.UsuarioEntry.COLUMN_EMAIL + "TEXT NOT NULL, " +
                 UsuarioContract.UsuarioEntry.COLUMN_PASSWORD + " TEXT NOT NULL);";
+        db.execSQL(sqlTabelaUser);
+
+        String sqlTabelaSubject = "CREATE TABLE" + SubjectContract.SubjectEntry.TABLE_NAME +" (" +
+                SubjectContract.SubjectEntry._IDUSUBJECT + " INTEGERS PRIMARY KEY, " +
+                SubjectContract.SubjectEntry.COLUMN_SUBJECTNAME + "TEXT NOT NULL, " +
+                SubjectContract.SubjectEntry.COLUMN_N1 + "TEXT NOT NULL, " +
+                SubjectContract.SubjectEntry.COLUMN_N2 + "TEXT NOT NULL, " +
+                SubjectContract.SubjectEntry.COLUMN_N3 + "TEXT NOT NULL, " +
+                SubjectContract.SubjectEntry.COLUMN_N4 + "TEXT NOT NULL, " +
+                SubjectContract.SubjectEntry.COLUMN_STATUS + " TEXT NOT NULL);";
+        db.execSQL(sqlTabelaSubject);
     }
 
 }

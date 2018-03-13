@@ -1,6 +1,7 @@
 package com.example.professorsudoeste.appinfoaluno;
 
 import android.content.pm.ApplicationInfo;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -19,7 +20,12 @@ public class Login extends AppCompatActivity {
     EditText edtUser, edtPassword;
     Button btnLogin;
 
-    InfoAlunoDB db = new InfoAlunoDB(this);
+    InfoAlunoDB db = new InfoAlunoDB(this) {
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +46,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Digite a senha", Toast.LENGTH_LONG).show();
                 }
                 // Confrimar se o usuario e a senha correspondem ao do banco de dados.
-                
+
             }
         });
     }
